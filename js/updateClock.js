@@ -1,6 +1,6 @@
 /* Adds zero padding to a number */
 function addZeroPadding (number, maxWidth) {
-  return genStr('0', (maxWidth || 2) - number.toString()) + number
+  return genStr('0', (maxWidth || 2) - number.toString().length) + number
 }
 
 /* Sets the content of an element to the passed value and returns it */

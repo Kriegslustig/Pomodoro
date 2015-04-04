@@ -12,7 +12,7 @@ function setAttribute (thing, attribute, value) {
 /* Generates an array with the given lenth where every position has the given content */
 function genArr (content, length) {
   var returnArr = []
-  for(var ind = 0; ind <= length; ind++) {
+  for(var ind = 0; ind < length; ind++) {
     returnArr.push(content)
   }
   return returnArr
