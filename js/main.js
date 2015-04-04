@@ -71,7 +71,8 @@ function newPeriod (periodName) {
 function initSyncs () {
   syncLocalStorageTo('currentPeriodSeconds', recalculateMinutes, 100)
   syncLocalStorageTo('currentPeriodSeconds', recalculateSeconds, 100)
-  syncLocalStorageTo('run', updatePeriodDisplay)
+  syncLocalStorageTo('currentPeriod', updatePeriodDisplay)
+  syncLocalStorageTo('currentRun', updateNthRunLabel)
 }
 
 /* Creates a clock and starts listening for changes in localStorage */

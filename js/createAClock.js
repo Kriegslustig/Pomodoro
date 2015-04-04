@@ -29,6 +29,6 @@ function createAnElement (elementName, content, newClass) {
 /* Creates a wrapper, a delimiter, a minutes and a seconds element */
 function createAClock (parentElement) {
   appendChildrenTo(parentElement, createAnElement('p', [createAnElement('span', '00', 'clockMinutes', false), createAnElement('span', ':', 'clockDelimiter', false), createAnElement('span', '00', 'clockSeconds', false)], 'clock'))
-  appendChild(parentElement, createPeriodLabel())
+  appendChildrenTo(parentElement, createLabels())
   appendChildrenTo(parentElement, createControls())
 }

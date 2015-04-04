@@ -11,17 +11,33 @@ function updateBodyAttribute (currentPeriod) {
 
 /* Updates the period label */
 function updatePeriodLabel (currentPeriod) {
-  document.getElementsByClassName('periodLabel')[0].innerHTML = getPeriod(currentPeriod).label
+  setElementInnerHTML('clock__label--period', getPeriod(currentPeriod).label)
 }
 
-/* Creates the periodLabel */
-function createPeriodLabel (parentElement) {
-  return createAnElement('p', 'Run', 'periodLabel')
+/* updates the nthRun label */
+function updateNthRunLabel (nthRun) {
+  setElementInnerHTML('clock__nthRun', nthRun)
+}
+
+/* Creates the period and the nthPeriod label */
+function createLabels (parentElement) {
+  return [
+    createAnElement('p', 'Run', bemify('clock__label--period')),
+    createAnElement('p', [
+      'Run Nr.: '
+      , createAnElement('span', '1', 'clock__nthRun')
+    ], bemify('clock__label--nthRun'))
+  ]
 }
 
 /* Creates controls for */
 function createControls () {
-  return [setAttribute(createAnElement('a', 'Start', 'clock__control clock__control--toggleRun'), 'href', '#toggleRun'), setAttribute(createAnElement('a', 'Skip', 'clock__control clock__control--skip'), 'href', '#skip'), setAttribute(createAnElement('a', 'Reset Current Period', 'clock__control clock__control--resetCurrentTime'), 'href', '#resetCurrentTime'), setAttribute(createAnElement('a', 'Full Reset', 'clock__control clock__control--fullReset'), 'href', '#fullReset')]
+  return [
+    setAttribute(createAnElement('a', 'Start', bemify('clock__control--toggleRun')), 'href', '#toggleRun'),
+    setAttribute(createAnElement('a', 'Skip', bemify('clock__control--skip')),'href', '#skip'),
+    setAttribute(createAnElement('a', 'Reset Current Period', bemify('clock__control--resetCurrentTime')), 'href', '#resetCurrentTime'),
+    setAttribute(createAnElement('a', 'Full Reset', bemify('clock__control--fullReset')), 'href', '#fullReset')
+  ]
 }
 
 /* Returns the hash from a URL */

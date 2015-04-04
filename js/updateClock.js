@@ -3,11 +3,6 @@ function addZeroPadding (number, maxWidth) {
   return genStr('0', (maxWidth || 2) - number.toString().length) + number
 }
 
-/* Sets the content of an element to the passed value and returns it */
-function setElementInnerHTML (className, newValue) {
-  return (document.getElementsByClassName(className)[0].innerHTML = newValue)
-}
-
 /* Updates the minutes DOM-Element */
 function updateMinutes (newValue) {
   return setElementInnerHTML('clockMinutes', newValue)

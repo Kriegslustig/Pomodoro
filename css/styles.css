@@ -14,14 +14,18 @@ body[data-currentperiod=longBreak] {
 }
 
 .clock,
-.periodLabel {
+.clock__label {
   width: 100%;
-  margin-top: 20vh;
+  line-height: 3rem;
   text-align: center;
   font-size: 2rem;
 }
 
-.periodLabel {
+.clock {
+  margin: 8vh 0;
+}
+
+.clock__label--nthRun {
   padding-bottom: 2rem;
 }
 
