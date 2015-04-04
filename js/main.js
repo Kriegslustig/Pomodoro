@@ -83,6 +83,5 @@ function initializeClock () {
 /* Initializes a new counter */
 function kickOff () {
   resetState()
-  setInterval(shouldDoNextPeriod, 100)
   newPeriod(getNextPeriodName())
 }
