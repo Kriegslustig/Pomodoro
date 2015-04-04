@@ -1,3 +1,7 @@
+/* Adds zero padding to a number */
+function addZeroPadding (number, maxWidth) {
+  return genStr('0', (maxWidth || 2) - number.toString()) + number
+}
 
 /* Sets the content of an element to the passed value and returns it */
 function setElementInnerHTML (className, newValue) {
@@ -16,10 +20,10 @@ function updateSeconds (newValue) {
 
 /* calculates and updates minutes */
 function recalculateMinutes (currentPeriodSeconds) {
-  updateMinutes(getCurrentPeriodLength() - 1 - Math.floor(currentPeriodSeconds / 60))
+  updateMinutes(addZeroPadding(getCurrentPeriodLength() - 1 - Math.floor(currentPeriodSeconds / 60)))
 }
 
 /* calculates and updates seconds */
 function recalculateSeconds (currentPeriodSeconds) {
-  updateSeconds(59 - currentPeriodSeconds % 60)
+  updateSeconds(addZeroPadding(59 - currentPeriodSeconds % 60))
 }
