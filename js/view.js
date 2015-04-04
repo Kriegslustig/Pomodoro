@@ -21,7 +21,7 @@ function createPeriodLabel (parentElement) {
 
 /* Creates controls for */
 function createControls () {
-  return [setAttribute(createAnElement('a', 'Start', 'clock__runToggle'), 'href', '#toggleRun'), setAttribute(createAnElement('a', 'Skip', 'clock__runToggle'), 'href', '#skip'), setAttribute(createAnElement('a', 'Reset Current Period', 'clock__runToggle'), 'href', '#resetCurrentTime'), setAttribute(createAnElement('a', 'Full Reset', 'clock__runToggle'), 'href', '#fullReset')]
+  return [setAttribute(createAnElement('a', 'Start', 'clock__control clock__control--toggleRun'), 'href', '#toggleRun'), setAttribute(createAnElement('a', 'Skip', 'clock__control clock__control--skip'), 'href', '#skip'), setAttribute(createAnElement('a', 'Reset Current Period', 'clock__control clock__control--resetCurrentTime'), 'href', '#resetCurrentTime'), setAttribute(createAnElement('a', 'Full Reset', 'clock__control clock__control--fullReset'), 'href', '#fullReset')]
 }
 
 /* Returns the hash from a URL */

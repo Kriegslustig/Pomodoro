@@ -20,3 +20,13 @@ body[data-currentperiod=longBreak] {
   text-align: center;
   font-size: 2rem;
 }
+
+.periodLabel {
+  padding-bottom: 2rem;
+}
+
+.clock__control {
+  display: block;
+  padding: .5rem;
+  text-align: center;
+}
