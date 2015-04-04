@@ -31,4 +31,5 @@ function createAClock (parentElement) {
   appendChildrenTo(parentElement, createAnElement('p', [createAnElement('span', '00', 'clockMinutes', false), createAnElement('span', ':', 'clockDelimiter', false), createAnElement('span', '00', 'clockSeconds', false)], 'clock'))
   appendChildrenTo(parentElement, createLabels())
   appendChildrenTo(parentElement, createControls())
+  appendChild(parentElement, createBackgroundElement())
 }

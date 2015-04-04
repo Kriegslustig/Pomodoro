@@ -47,3 +47,19 @@ body[data-currentperiod=longBreak] {
 .clock__control:active {
   color: hsl(0, 0%, 100%);
 }
+
+.clock__animation {
+  z-index: -1;
+  display: block;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: hsl(0, 75%, 55%);
+  transition: height .6s;
+}
+
+body[data-currentperiod=shortBreak] .clock__animation,
+body[data-currentperiod=longBreak] .clock__animation {
+  background-color: hsl(80, 30%, 50%);
+}

@@ -4,6 +4,7 @@
 
 /* Executes a function in an interval and passes the current value of the desired localStorageItem to it */
 function syncLocalStorageTo (key, syncFunct, interval) {
+  syncFunct(localStorage.getItem(key))
   setInterval(function () {
     syncFunct(localStorage.getItem(key))
   }, (interval || 500))

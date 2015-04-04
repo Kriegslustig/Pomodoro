@@ -74,12 +74,14 @@ function initSyncs () {
   syncLocalStorageTo('currentPeriod', updatePeriodDisplay)
   syncLocalStorageTo('currentRun', updateNthRunLabel)
   syncLocalStorageTo('running', updateToggleRunButton)
+  syncLocalStorageTo('currentPeriodSeconds', updateBackgroundHeight, 10000)
 }
 
 /* Creates a clock and starts listening for changes in localStorage */
 function initializeClock () {
   createAClock(document.body)
   initSyncs()
+  removeRunning()
 }
 
 /* Initializes a new counter */

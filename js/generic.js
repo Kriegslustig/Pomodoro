@@ -37,9 +37,20 @@ function genStr (content, length) {
   return genArr(content, length).join('')
 }
 
+/* gets a dom-node by className */
+function getElement (className) {
+  return document.getElementsByClassName(className)[0]
+}
+
 /* Sets the content of an element to the passed value and returns it */
 function setElementInnerHTML (className, newValue) {
-  return (document.getElementsByClassName(className)[0].innerHTML = newValue)
+  return (getElement(className).innerHTML = newValue)
+}
+
+/* Sets some style and returns the element */
+function setStyle (element, attribute, value) {
+  setAttribute(element.style, attribute, value)
+  return element
 }
 
 /* Transforms a className to match the BEM-pattern */
