@@ -34,3 +34,16 @@ body[data-currentperiod=longBreak] {
   padding: .5rem;
   text-align: center;
 }
+
+.clock__nthRun {
+  text-decoration: underline;
+  font-size: 3rem;
+}
+
+.clock__control {
+  color: hsl(230, 30%, 20%);
+}
+
+.clock__control:active {
+  color: hsl(0, 0%, 100%);
+}

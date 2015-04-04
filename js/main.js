@@ -73,6 +73,7 @@ function initSyncs () {
   syncLocalStorageTo('currentPeriodSeconds', recalculateSeconds, 100)
   syncLocalStorageTo('currentPeriod', updatePeriodDisplay)
   syncLocalStorageTo('currentRun', updateNthRunLabel)
+  syncLocalStorageTo('running', updateToggleRunButton)
 }
 
 /* Creates a clock and starts listening for changes in localStorage */

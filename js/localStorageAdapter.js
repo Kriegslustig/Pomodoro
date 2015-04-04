@@ -15,6 +15,17 @@ function resetState () {
   localStorage.setItem('currentPeriod', 'run')
   localStorage.setItem('currentRun', 0)
   localStorage.setItem('nthPeriod', 0)
+  localStorage.removeItem('running')
+}
+
+/* Removes running */
+function removeRunning () {
+  localStorage.removeItem('running')
+}
+
+/* Sets running */
+function setRunning () {
+  localStorage.setItem('running', true)
 }
 
 /* Return the currentRun */

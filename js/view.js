@@ -19,13 +19,17 @@ function updateNthRunLabel (nthRun) {
   setElementInnerHTML('clock__nthRun', nthRun)
 }
 
+function updateToggleRunButton (running) {
+  setElementInnerHTML('clock__control--toggleRun', (running ? 'Stop' : 'Start'))
+}
+
 /* Creates the period and the nthPeriod label */
 function createLabels (parentElement) {
   return [
-    createAnElement('p', 'Run', bemify('clock__label--period')),
+    createAnElement('p', getCurrentPeriod().label, bemify('clock__label--period')),
     createAnElement('p', [
       'Run Nr.: '
-      , createAnElement('span', '1', 'clock__nthRun')
+      , createAnElement('span', getCurrentRun().toString(), 'clock__nthRun')
     ], bemify('clock__label--nthRun'))
   ]
 }

@@ -11,6 +11,7 @@ function newInterval (intervalId, callback, interval) {
 
 /* kills the active clock runner */
 function killClock () {
+  removeRunning()
   if(godDamnState.fuckingRunnerIntervalId) clearInterval(godDamnState.fuckingRunnerIntervalId)
   return godDamnState.fuckingRunnerIntervalId = false
 }
@@ -27,6 +28,7 @@ function startSecondInterval () {
 
 /* Resets an interval to increment Seconds */
 function startCounter () {
+  setRunning()
   godDamnState.fuckingRunnerIntervalId = newInterval(godDamnState.fuckingRunnerIntervalId, incrementSeconds, 1000)
   godDamnState.periodCheckerIntervalId = newInterval(godDamnState.periodCheckerIntervalId, shouldDoNextPeriod, 100)
 }
