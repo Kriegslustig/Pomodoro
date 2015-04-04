@@ -32,4 +32,5 @@ function createAClock (parentElement) {
   appendChildrenTo(parentElement, createLabels())
   appendChildrenTo(parentElement, createControls())
   appendChild(parentElement, createBackgroundElement())
+  appendChild(parentElement, createAlertElement())
 }

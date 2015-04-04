@@ -15,6 +15,7 @@ var config = {
   , label: 'Long Break'
   }
 , prioritization: ['longBreak', 'shortBreak', 'run']
+, audioAlert: 'cnt/palimpalim.ogg'
 }
 
 /* Returns all attributes of a period */
@@ -69,10 +70,11 @@ function newPeriod (periodName) {
 
 /* Inializes the sync between DOM and localstorage */
 function initSyncs () {
-  syncLocalStorageTo('currentPeriodSeconds', recalculateMinutes, 100)
-  syncLocalStorageTo('currentPeriodSeconds', recalculateSeconds, 100)
+  syncLocalStorageTo('currentPeriodSeconds', recalculateMinutes)
+  syncLocalStorageTo('currentPeriodSeconds', recalculateSeconds)
   syncLocalStorageTo('currentPeriod', updatePeriodDisplay)
   syncLocalStorageTo('currentRun', updateNthRunLabel)
+  syncLocalStorageTo('currentRun', audioAlert, 500, true)
   syncLocalStorageTo('running', updateToggleRunButton)
   syncLocalStorageTo('currentPeriodSeconds', updateBackgroundHeight, 10000)
 }

@@ -3,10 +3,14 @@
 */
 
 /* Executes a function in an interval and passes the current value of the desired localStorageItem to it */
-function syncLocalStorageTo (key, syncFunct, interval) {
-  syncFunct(localStorage.getItem(key))
+function syncLocalStorageTo (key, syncFunct, interval, dontDoFisrtTime) {
+  var currentValue = localStorage.getItem(key)
+  if(!dontDoFisrtTime) syncFunct(localStorage.getItem(key))
   setInterval(function () {
-    syncFunct(localStorage.getItem(key))
+    if(localStorage.getItem(key) != currentValue){
+      syncFunct(localStorage.getItem(key))
+      currentValue = localStorage.getItem(key)
+    }
   }, (interval || 500))
 }
 
