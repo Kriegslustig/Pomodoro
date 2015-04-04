@@ -1,0 +1,22 @@
+html {
+  font-size: 30px;
+}
+
+body {
+  background-color: hsl(80, 30%, 50%);
+  font-family: Input, mono-space;
+  color: hsl(0, 0%, 100%);
+}
+
+body[data-currentperiod=shortBreak],
+body[data-currentperiod=longBreak] {
+  background-color: hsl(230, 10%, 50%);
+}
+
+.clock,
+.periodLabel {
+  width: 100%;
+  margin-top: 20vh;
+  text-align: center;
+  font-size: 2rem;
+}

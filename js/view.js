@@ -6,7 +6,7 @@ function updatePeriodDisplay () {
 
 /* Updates the body Attribute to be the current periods name */
 function updateBodyAttribute (currentPeriod) {
-  document.body.setAttribute('data-currentPeriod', currentPeriod)
+  document.body.setAttribute('data-currentperiod', currentPeriod)
 }
 
 /* Updates the period label */
