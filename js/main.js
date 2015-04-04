@@ -9,13 +9,28 @@ var config = {
   }
 , longBreak: {
     length: 15
-  , every: 4
+  , every: 8
   }
 , prioritization: ['longBreak', 'shortBreak', 'run']
 }
 
 var godDamnState = {
   fuckingIntervalId: false
+}
+
+/* Returns all attributes of a period */
+function getPeriod (periodName) {
+  return config[periodName]
+}
+
+/* Returns all attributes of the current period */
+function getCurrentPeriod () {
+  return getPeriod(getCurrentPeriodName())
+}
+
+/* Returns the current periods lenth */
+function getCurrentPeriodLength () {
+  return getCurrentPeriod().length
 }
 
 /* checks if it's the last period */
@@ -26,18 +41,18 @@ function isLastPeriod (periodIndex) {
 /* Returns the name of the next period */
 function getNextPeriodName () {
   for (var ind = 0; ind < config.prioritization.length; ind++) {
-    if((getNthPeriod() + 1) % config[config.prioritization[ind]].every == 0) return config.prioritization[ind]
+    if((getNthPeriod() + 1) % getPeriod(config.prioritization[ind]).every == 0) return config.prioritization[ind]
   }
 }
 
 /* Initializes the nextPeriod */
 function nextPeriod () {
-  newPeriod(getNextPeriodName())
+  return newPeriod(getNextPeriodName())
 }
 
 /* Initiates a new run if currentRunMinutes is higher than or equal to currentPeriod */
 function shouldDoNextPeriod (currentMinutes) {
-  if(getMinutes() >= config[getCurrentPeriod()].length) nextPeriod()
+  if(getSeconds() / 60 >= getCurrentPeriodLength()) nextPeriod()
 }
 
 /* Resets an interval to increment Seconds */
@@ -54,9 +69,10 @@ function newRun () {
 
 /* Initiates a period */
 function newPeriod (periodName) {
-  if(setCurrentPeriod(periodName) == 'run') newRun()
+  if(setCurrentPeriodName(periodName) == 'run') newRun()
   incrementNthPeriod()
   theBeginningOfTime()
+  return periodName
 }
 
 function theBeginningOfTime () {
@@ -72,6 +88,7 @@ function initSyncs () {
 
 function main () {
   createAClock(document.body)
+  resetState()
   newPeriod(getNextPeriodName())
   initSyncs()
   theBeginningOfTime()

@@ -64,12 +64,12 @@ function incrementNthPeriod () {
 }
 
 /* Returns the current Period */
-function getCurrentPeriod () {
+function getCurrentPeriodName () {
   return localStorage.getItem('currentPeriod')
 }
 
 /* Sets the current period to passed value and returns it */
-function setCurrentPeriod (newPeriod) {
+function setCurrentPeriodName (newPeriod) {
   localStorage.setItem('currentPeriod', newPeriod)
   return newPeriod
 }

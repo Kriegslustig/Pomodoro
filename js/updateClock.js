@@ -16,10 +16,10 @@ function updateSeconds (newValue) {
 
 /* calculates and updates minutes */
 function recalculateMinutes (currentPeriodSeconds) {
-  updateMinutes(Math.floor(currentPeriodSeconds / 60))
+  updateMinutes(getCurrentPeriodLength() - 1 - Math.floor(currentPeriodSeconds / 60))
 }
 
 /* calculates and updates seconds */
 function recalculateSeconds (currentPeriodSeconds) {
-  updateSeconds(currentPeriodSeconds % 60)
+  updateSeconds(59 - currentPeriodSeconds % 60)
 }
