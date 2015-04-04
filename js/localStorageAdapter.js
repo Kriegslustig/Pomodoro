@@ -17,11 +17,6 @@ function resetState () {
   localStorage.setItem('nthPeriod', 0)
 }
 
-/* increments seconds in localstorage */
-function incrementSeconds () {
-  setSeconds(getSeconds() + 1)
-}
-
 /* Return the currentRun */
 function getCurrentRun () {
   return parseInt(localStorage.getItem('currentRun'))

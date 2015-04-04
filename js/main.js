@@ -17,10 +17,6 @@ var config = {
 , prioritization: ['longBreak', 'shortBreak', 'run']
 }
 
-var godDamnState = {
-  fuckingIntervalId: false
-}
-
 /* Returns all attributes of a period */
 function getPeriod (periodName) {
   return config[periodName]
@@ -58,13 +54,6 @@ function shouldDoNextPeriod (currentMinutes) {
   if(getSeconds() / 60 >= getCurrentPeriodLength()) nextPeriod()
 }
 
-/* Resets an interval to increment Seconds */
-function startCounter () {
-  if(godDamnState.fuckingIntervalId) clearInterval(godDamnState.fuckingIntervalId)
-  godDamnState.fuckingIntervalId = setInterval(incrementSeconds, 1000)
-  setInterval(shouldDoNextPeriod, 100)
-}
-
 /* initiates a new run */
 function newRun () {
   setCurrentRun(getCurrentRun() + 1)
@@ -78,11 +67,6 @@ function newPeriod (periodName) {
   return periodName
 }
 
-function theBeginningOfTime () {
-  setSeconds(0)
-  startCounter()
-}
-
 /* Inializes the sync between DOM and localstorage */
 function initSyncs () {
   syncLocalStorageTo('currentPeriodSeconds', recalculateMinutes, 100)
@@ -90,10 +74,15 @@ function initSyncs () {
   syncLocalStorageTo('run', updatePeriodDisplay)
 }
 
-function main () {
+/* Creates a clock and starts listening for changes in localStorage */
+function initializeClock () {
   createAClock(document.body)
-  resetState()
-  newPeriod(getNextPeriodName())
   initSyncs()
-  theBeginningOfTime()
+}
+
+/* Initializes a new counter */
+function kickOff () {
+  resetState()
+  setInterval(shouldDoNextPeriod, 100)
+  newPeriod(getNextPeriodName())
 }
