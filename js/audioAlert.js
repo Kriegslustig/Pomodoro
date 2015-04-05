@@ -2,13 +2,29 @@
   This add a audio alert to
 */
 
-/* Creates a audio-element that plays the alert sound */
-function createAlertElement () {
-  return setAttribute(createAnElement('audio', '', 'clock__alert'), 'src', config.audioAlert)
-}
+pull.component('audioAlert', function () {
 
-/* tiggers the audio element to play */
-function audioAlert () {
-  getElement('clock__alert').load()
-  getElement('clock__alert').play()
-}
+  var s = this
+  var g = s.generic
+  var dom = s.domManipulation
+
+  return [
+    createAlertElement
+  , audioAlert
+  ]
+
+  /* Creates a audio-element that plays the alert sound */
+  function createAlertElement () {
+    return g.setAttribute(dom.createAnElement('audio', '', 'clock__alert'), 'src', s.config.audioAlert)
+  }
+
+  /* tiggers the audio element to play */
+  function audioAlert () {
+    dom.getElement('clock__alert').load()
+    dom.getElement('clock__alert').play()
+  }
+}, [
+  'config'
+, 'generic'
+, 'domManipulation'
+])

@@ -1,45 +1,40 @@
-var godDamnState = {
-  fuckingRunnerIntervalId: false
-, periodCheckerIntervalId: false
-}
+pull.component('timerFunctions', function () {
 
-/* clear the old one running under that id and */
-function newInterval (intervalId, callback, interval) {
-  if(intervalId) clearInterval(intervalId)
-  return setInterval(callback, interval)
-}
+  var s = this
+  var g = s.generic
+  var ls = s.localStorageAdapter
 
-/* kills the active clock runner */
-function killClock () {
-  removeRunning()
-  if(godDamnState.fuckingRunnerIntervalId) clearInterval(godDamnState.fuckingRunnerIntervalId)
-  return godDamnState.fuckingRunnerIntervalId = false
-}
+  return [
+    killClock
+  , incrementSeconds
+  , startSecondInterval
+  , startCounter
+  ]
 
-/* increments seconds in localstorage */
-function incrementSeconds () {
-  setSeconds(getSeconds() + 1)
-}
+  /* kills the active clock runner */
+  function killClock () {
+    ls.removeRunning()
+    return s.intervalControler.killInterval('clockRunner')
+  }
 
-/* starts the interval to increment on clock */
-function startSecondInterval () {
-  godDamnState.fuckingRunnerIntervalId = setInterval(incrementSeconds, 1000)
-}
+  /* increments seconds in localstorage */
+  function incrementSeconds () {
+    ls.setSeconds(ls.getSeconds() + 1)
+  }
 
-/* Resets an interval to increment Seconds */
-function startCounter () {
-  setRunning()
-  godDamnState.fuckingRunnerIntervalId = newInterval(godDamnState.fuckingRunnerIntervalId, incrementSeconds, 1000)
-  godDamnState.periodCheckerIntervalId = newInterval(godDamnState.periodCheckerIntervalId, shouldDoNextPeriod, 100)
-}
+  /* starts the interval to increment on clock */
+  function startSecondInterval () {
+    s.intervalControler.newInterval('clockRunner', incrementSeconds, 1000)
+  }
 
-/* Starts clock at 0 */
-function theBeginningOfTime () {
-  setSeconds(0)
-  startCounter()
-}
-
-/* Toggles the clock run */
-function toggleRun () {
-  return godDamnState.fuckingRunnerIntervalId ? killClock() : startCounter()
-}
+  /* Resets an interval to increment Seconds */
+  function startCounter () {
+    s.intervalControler.newInterval('fuckingSecondsIncrementer', function () {
+      if(ls.isRunning()) ls.incrementSeconds
+    }, 1000)
+  }
+}, [
+  'generic'
+, 'localStorageAdapter'
+, 'intervalControler'
+])
