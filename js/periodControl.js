@@ -50,7 +50,7 @@ pull.component('periodControl', function () {
 
   /* Initiates a new run if currentRunMinutes is higher than or equal to currentPeriod */
   function shouldDoNextPeriod (currentMinutes) {
-    if(getSeconds() / 60 >= getCurrentPeriodLength()) nextPeriod()
+    if(ls.getSeconds() / 60 >= getCurrentPeriodLength()) nextPeriod()
   }
 
   /* initiates a new run */

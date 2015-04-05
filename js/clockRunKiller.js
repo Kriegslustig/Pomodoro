@@ -14,7 +14,16 @@ pull.component('clockRunKiller', function () {
   function kickOff () {
     ls.resetState()
     s.periodControl.newPeriod(s.periodControl.getNextPeriodName())
+  }
+
+  /* Makes a client the owner of the second counter  */
+  function makeMaster () {
+    s.intervalControler.newInterval('secondIncrement', shouldIncrementSeconds, 1000)
     s.intervalControler.newInterval('shouldDoNextPeriod', s.periodControl.shouldDoNextPeriod, 100)
+  }
+
+  function shouldIncrementSeconds () {
+    if(ls.isRunning) return ls.incrementSeconds()
   }
 
   function resetRunTime () {
@@ -22,7 +31,8 @@ pull.component('clockRunKiller', function () {
   }
 
   function toggleRun () {
-    return ls.isRunning ? ls.removeRunning() : ls.setRunning()
+    makeMaster()
+    return ls.isRunning() ? ls.removeRunning() : ls.setRunning()
   }
 
 }, [

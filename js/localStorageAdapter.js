@@ -8,10 +8,12 @@ pull.component('localStorageAdapter', function () {
   , resetState
   , removeRunning
   , setRunning
+  , isRunning
   , getCurrentRun
   , setCurrentRun
   , setSeconds
   , getSeconds
+  , incrementSeconds
   , getMinutes
   , getNthPeriod
   , setNthPeriod
@@ -69,6 +71,11 @@ pull.component('localStorageAdapter', function () {
   /* updates LocalStorage currentPeriodSeconds */
   function setSeconds (newValue) {
     localStorage.setItem('currentPeriodSeconds', newValue)
+  }
+  
+  /* increments seconds in localstorage */
+  function incrementSeconds () {
+    setSeconds(getSeconds() + 1)
   }
 
   /* gets LocalStorage currentPeriodSeconds */

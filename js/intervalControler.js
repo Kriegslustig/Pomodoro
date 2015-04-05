@@ -1,10 +1,11 @@
 pull.component('intervalControler', function () {
+
+  var allDamnIntervals = {}
+
   return [
     newInterval
   , killInterval
   ]
-
-  var allDamnIntervals = {}
 
   /* clear the old one running under that id and */
   function newInterval (intervalId, callback, interval) {
