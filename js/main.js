@@ -41,13 +41,13 @@ pull.component('main', function () {
 
 }, [
   'generic'
-, 'theClock'
 , 'localStorageAdapter'
-, 'clockElements'
-, 'backgroundAnimation'
-, 'clockUpdater'
-, 'audioAlert'
-, 'periodControl'
-, 'clockRunKiller'
 , 'hashActions'
+, 'audioAlert'
+, 'backgroundAnimation'
+, 'periodControl'
+, 'clockUpdater'
+, 'clockElements'
+, 'theClock'
+, 'clockRunKiller'
 ])
