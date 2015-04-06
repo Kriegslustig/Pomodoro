@@ -2,6 +2,7 @@ pull.component('hashActions', function () {
 
   var s = this
   var g = s.generic
+  var actions = {}
 
   return [
     createActionListener
@@ -17,14 +18,14 @@ pull.component('hashActions', function () {
     return g.nth(url.split('#'), 0) + '#'
   }
 
+  /* Adds a new hash action */
+  function addAction (name, action) {
+    return !actions[name] ? actions[name] = action : false
+  }
+
   /* do a hashAction */
   function doHashAction (actionName) {
-    g.executeAttribute({
-      'toggleRun': s.clockRunKiller.toggleRun
-    , 'skip': s.periodControl.nextPeriod
-    , 'resetCurrentTime': s.clockRunKiller.resetRunTime
-    , 'fullReset': s.clockRunKiller.kickOff
-    }, actionName)
+    if(actions[actionName]) return actions[actionName]()
   }
 
   /* Creates a hashchange eventlistener and triggers actions */
@@ -36,6 +37,4 @@ pull.component('hashActions', function () {
   }
 }, [
   'generic'
-, 'periodControl'
-, 'clockRunKiller'
 ])

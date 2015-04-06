@@ -28,6 +28,15 @@ pull.component('main', function () {
     initSyncs()
     ls.removeRunning()
   }
+
+  /* Adds all hashactions */
+  function addHashActions () {
+    s.hashActions.addAction('toggleRun', s.clockRunKiller.toggleRun)
+    s.hashActions.addAction('skip', s.periodControl.nextPeriod)
+    s.hashActions.addAction('resetCurrentTime', s.clockRunKiller.resetRunTime)
+    s.hashActions.addAction('fullReset', s.clockRunKiller.kickOff)
+  }
+
 }, [
   'generic'
 , 'theClock'
@@ -37,4 +46,6 @@ pull.component('main', function () {
 , 'clockUpdater'
 , 'audioAlert'
 , 'periodControl'
+, 'clockRunKiller'
+, 'hashActions'
 ])
