@@ -30,6 +30,7 @@ pull.component('main', function () {
   /* Creates a clock and starts listening for changes in localStorage */
   function initializeClock () {
     s.theClock.createAClock(document.body)
+    if(!ls.getCurrentRun()) ls.resetState()
     addHashActions()
     initSyncs()
     ls.removeRunning()
