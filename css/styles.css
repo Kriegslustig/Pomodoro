@@ -4,7 +4,7 @@ html {
 
 body {
   background-color: hsl(80, 30%, 50%);
-  font-family: Input, mono-space;
+  font-family: Input, monospace;
   color: hsl(0, 0%, 100%);
 }
 
