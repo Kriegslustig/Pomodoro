@@ -1,3 +1,7 @@
+/*
+  Some helpers to interact with DOM
+*/
+
 pull.component('domManipulation', function () {
 
   var s = this

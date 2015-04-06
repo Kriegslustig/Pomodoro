@@ -1,3 +1,7 @@
+/*
+  Provides an interface to actions that should be triggered when the URL hash is equal to a keyword
+*/
+
 pull.component('hashActions', function () {
 
   var s = this

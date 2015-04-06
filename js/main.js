@@ -1,3 +1,7 @@
+/*
+  This connects all components
+*/
+
 pull.component('main', function () {
 
   var s = this

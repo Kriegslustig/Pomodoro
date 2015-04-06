@@ -1,3 +1,7 @@
+/*
+  All configuration stuff
+*/
+
 pull.staticComponent('config', {
     run: {
       length: 25

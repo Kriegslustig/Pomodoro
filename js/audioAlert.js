@@ -1,5 +1,5 @@
 /*
-  This add a audio alert to
+  Can trigger playing the `audioAlert` which is configured
 */
 
 pull.component('audioAlert', function () {

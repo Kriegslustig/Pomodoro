@@ -1,3 +1,7 @@
+/*
+  Some helpers for the creation of intervals
+*/
+
 pull.component('intervalControler', function () {
 
   var allDamnIntervals = {}
