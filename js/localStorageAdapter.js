@@ -49,8 +49,8 @@ pull.component('localStorageAdapter', function () {
   function resetState () {
     localStorage.setItem('currentPeriodSeconds', 0)
     localStorage.setItem('currentPeriod', 'run')
-    localStorage.setItem('currentRun', 0)
-    localStorage.setItem('nthPeriod', 0)
+    localStorage.setItem('currentRun', 1)
+    localStorage.setItem('nthPeriod', 1)
     localStorage.removeItem('running')
     resetPeriodStartingTime()
   }

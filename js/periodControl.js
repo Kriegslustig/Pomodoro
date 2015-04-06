@@ -50,7 +50,9 @@ pull.component('periodControl', function () {
 
   /* Initiates a new run if currentRunMinutes is higher than or equal to currentPeriod */
   function shouldDoNextPeriod (currentMinutes) {
-    if(ls.getSeconds() / 60 >= getCurrentPeriodLength()) nextPeriod()
+    if(ls.getSeconds() / 60 >= getCurrentPeriodLength())
+      if(nextPeriod() == 'run')
+        s.audioAlert.audioAlert()
   }
 
   /* initiates a new run */
@@ -70,4 +72,5 @@ pull.component('periodControl', function () {
   'generic'
 , 'config'
 , 'localStorageAdapter'
+, 'audioAlert'
 ])

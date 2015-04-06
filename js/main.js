@@ -20,7 +20,6 @@ pull.component('main', function () {
     }, 500)
     ls.syncLocalStorageTo('currentPeriod', s.clockElements.updatePeriodDisplay)
     ls.syncLocalStorageTo('currentRun', s.clockElements.updateNthRunLabel)
-    ls.syncLocalStorageTo('currentRun', s.audioAlert.audioAlert, 500, true)
     ls.syncLocalStorageTo('running', s.clockElements.updateToggleRunButton)
     ls.syncLocalStorageTo('currentPeriodSeconds', function (data) {
       s.backgroundAnimation.updateBackgroundHeight(data, s.periodControl.getCurrentPeriodLength())

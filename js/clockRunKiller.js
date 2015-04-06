@@ -11,8 +11,10 @@ pull.component('clockRunKiller', function () {
 
   /* Initializes a new counter */
   function kickOff () {
+    makeMaster()
+    s.periodControl.newPeriod('run')
     ls.resetState()
-    s.periodControl.newPeriod(s.periodControl.getNextPeriodName())
+    ls.setRunning()
   }
 
   /* Makes a client the owner of the second counter  */
