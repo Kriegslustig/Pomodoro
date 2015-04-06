@@ -13,7 +13,10 @@ pull.component('localStorageAdapter', function () {
   , setCurrentRun
   , setSeconds
   , getSeconds
-  , incrementSeconds
+  , updateSeconds
+  , setPeriodStartingTime
+  , getPeriodStartingTime
+  , resetPeriodStartingTime
   , getMinutes
   , getNthPeriod
   , setNthPeriod
@@ -41,6 +44,7 @@ pull.component('localStorageAdapter', function () {
     localStorage.setItem('currentRun', 0)
     localStorage.setItem('nthPeriod', 0)
     localStorage.removeItem('running')
+    resetPeriodStartingTime()
   }
 
   /* Removes running */
@@ -73,9 +77,29 @@ pull.component('localStorageAdapter', function () {
     localStorage.setItem('currentPeriodSeconds', newValue)
   }
   
-  /* increments seconds in localstorage */
-  function incrementSeconds () {
-    setSeconds(getSeconds() + 1)
+  /* Recalculates seconds in localstorage */
+  function updateSeconds () {
+    setSeconds(getCurrentTimeSeconds() - getPeriodStartingTime())
+  }
+
+  /* Sets the periodStartingTime */
+  function setPeriodStartingTime (newValue) {
+    return localStorage.set('periodStartingTime', newValue)
+  }
+
+  /* Returns the PeriodStartingTime */
+  function getPeriodStartingTime () {
+    return localStorage.getItem('periodStartingTime')
+  }
+
+  /* Resets the periodStarting time to the current time */
+  function resetPeriodStartingTime () {
+    return localStorage.setItem('periodStartingTime', getCurrentTimeSeconds())
+  }
+
+  /* Returns the current time in Seconds */
+  function getCurrentTimeSeconds () {
+    return Math.round(new Date().getTime() / 1000)
   }
 
   /* gets LocalStorage currentPeriodSeconds */

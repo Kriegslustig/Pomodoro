@@ -5,8 +5,7 @@ pull.component('main', function () {
   var ls = s.localStorageAdapter
 
   return [
-    initSyncs
-  , initializeClock
+    initializeClock
   ]
 
   /* Inializes the sync between DOM and localstorage */
@@ -27,6 +26,7 @@ pull.component('main', function () {
   /* Creates a clock and starts listening for changes in localStorage */
   function initializeClock () {
     s.theClock.createAClock(document.body)
+    addHashActions()
     initSyncs()
     ls.removeRunning()
   }
@@ -35,7 +35,7 @@ pull.component('main', function () {
   function addHashActions () {
     s.hashActions.addAction('toggleRun', s.clockRunKiller.toggleRun)
     s.hashActions.addAction('skip', s.periodControl.nextPeriod)
-    s.hashActions.addAction('resetCurrentTime', s.clockRunKiller.resetRunTime)
+    s.hashActions.addAction('resetCurrentTime', ls.resetPeriodStartingTime)
     s.hashActions.addAction('fullReset', s.clockRunKiller.kickOff)
   }
 

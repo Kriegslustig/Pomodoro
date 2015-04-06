@@ -62,7 +62,7 @@ pull.component('periodControl', function () {
   function newPeriod (periodName) {
     if(ls.setCurrentPeriodName(periodName) == 'run') newRun()
     ls.incrementNthPeriod()
-    ls.setSeconds(0)
+    ls.resetPeriodStartingTime()
     return periodName
   }
 }, [

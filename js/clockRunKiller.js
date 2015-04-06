@@ -6,7 +6,6 @@ pull.component('clockRunKiller', function () {
 
   return [
     kickOff
-  , resetRunTime
   , toggleRun
   ]
 
@@ -18,18 +17,16 @@ pull.component('clockRunKiller', function () {
 
   /* Makes a client the owner of the second counter  */
   function makeMaster () {
-    s.intervalControler.newInterval('secondIncrement', shouldIncrementSeconds, 1000)
+    s.intervalControler.newInterval('secondIncrement', shouldUpdateSeconds, 1000)
     s.intervalControler.newInterval('shouldDoNextPeriod', s.periodControl.shouldDoNextPeriod, 100)
   }
 
-  function shouldIncrementSeconds () {
-    if(ls.isRunning) return ls.incrementSeconds()
+  /* Increments seconds if the clocks running */
+  function shouldUpdateSeconds () {
+    if(ls.isRunning) return ls.updateSeconds()
   }
 
-  function resetRunTime () {
-    return ls.setSeconds(0)
-  }
-
+  /* Toggles the clock runner */
   function toggleRun () {
     makeMaster()
     return ls.isRunning() ? ls.removeRunning() : ls.setRunning()

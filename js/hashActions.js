@@ -6,6 +6,8 @@ pull.component('hashActions', function () {
 
   return [
     createActionListener
+  , doHashAction
+  , addAction
   ]
 
   /* Returns the hash from a URL */
@@ -20,12 +22,13 @@ pull.component('hashActions', function () {
 
   /* Adds a new hash action */
   function addAction (name, action) {
-    return !actions[name] ? actions[name] = action : false
+    if(!actions[name]) actions[name] = action
   }
 
   /* do a hashAction */
   function doHashAction (actionName) {
     if(actions[actionName]) return actions[actionName]()
+    return false
   }
 
   /* Creates a hashchange eventlistener and triggers actions */
