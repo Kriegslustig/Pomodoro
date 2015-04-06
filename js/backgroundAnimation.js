@@ -24,8 +24,8 @@ pull.component('backgroundAnimation', function () {
   }
 
   /* Updates the height of the fancy background element */
-  function updateBackgroundHeight (currentPeriodSeconds) {
-    dom.setStyle(dom.getElement('clock__animation'), 'height', calcBackgroundHeight(currentPeriodSeconds))
+  function updateBackgroundHeight (currentPeriodSeconds, currentPeriodLength) {
+    dom.setStyle(dom.getElement('clock__animation'), 'height', calcBackgroundHeight(currentPeriodSeconds, currentPeriodLength))
   }
 }, [
   'generic'
