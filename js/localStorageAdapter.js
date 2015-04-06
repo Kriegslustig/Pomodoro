@@ -3,6 +3,13 @@
 */
 
 pull.component('localStorageAdapter', function () {
+
+  /* DEBUGING: Sets the Seconds */
+  setSuperSeconds = function (newValue) {
+    setSeconds(newValue)
+    setPeriodStartingTime(getCurrentTimeSeconds() - newValue)
+  }
+
   return [
     syncLocalStorageTo
   , resetState
@@ -30,9 +37,10 @@ pull.component('localStorageAdapter', function () {
     var currentValue = localStorage.getItem(key)
     if(!dontDoFisrtTime) syncFunct(localStorage.getItem(key))
     setInterval(function () {
-      if(localStorage.getItem(key) != currentValue){
-        syncFunct(localStorage.getItem(key))
-        currentValue = localStorage.getItem(key)
+      var newValue = localStorage.getItem(key)
+      if(newValue != currentValue){
+        syncFunct(newValue)
+        currentValue = newValue
       }
     }, (interval || 500))
   }
@@ -84,7 +92,7 @@ pull.component('localStorageAdapter', function () {
 
   /* Sets the periodStartingTime */
   function setPeriodStartingTime (newValue) {
-    return localStorage.set('periodStartingTime', newValue)
+    return localStorage.setItem('periodStartingTime', newValue)
   }
 
   /* Returns the PeriodStartingTime */
