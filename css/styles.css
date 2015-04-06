@@ -3,7 +3,7 @@ html {
 }
 
 body {
-  background-color: hsl(80, 30%, 50%);
+  background-color: hsl(0, 75%, 55%);
   font-family: Input, monospace;
   color: hsl(0, 0%, 100%);
 }
@@ -41,13 +41,13 @@ body[data-currentperiod=longBreak] {
   bottom: 0;
   right: 0;
   left: 0;
-  background-color: hsl(0, 75%, 55%);
+  background-color: hsl(80, 30%, 50%);
   transition: height .6s;
 }
 
 body[data-currentperiod=shortBreak] .clock__animation,
 body[data-currentperiod=longBreak] .clock__animation {
-  background-color: hsl(80, 30%, 50%);
+  background-color: hsl(0, 75%, 55%);
 }
 
 .actionButton {
