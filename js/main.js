@@ -11,7 +11,9 @@ pull.component('main', function () {
 
   /* Inializes the sync between DOM and localstorage */
   function initSyncs () {
-    ls.syncLocalStorageTo('currentPeriodSeconds', s.clockUpdater.recalculateMinutes)
+    ls.syncLocalStorageTo('currentPeriodSeconds', function (currentPeriodSeconds) {
+      s.clockUpdater.recalculateMinutes(currentPeriodSeconds, s.periodControl.getCurrentPeriodLength())
+    })
     ls.syncLocalStorageTo('currentPeriodSeconds', s.clockUpdater.recalculateSeconds)
     ls.syncLocalStorageTo('currentPeriod', s.clockElements.updatePeriodDisplay)
     ls.syncLocalStorageTo('currentRun', s.clockElements.updateNthRunLabel)

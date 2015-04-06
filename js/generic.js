@@ -9,6 +9,7 @@ pull.component('generic', function () {
   , nth
   , genArr
   , genStr
+  , addZeroPadding
   ]
 
   /* checks if a string or an array has some content */
@@ -45,4 +46,10 @@ pull.component('generic', function () {
   function genStr (content, length) {
     return genArr(content, length).join('')
   }
+
+  /* Adds zero padding to a number */
+  function addZeroPadding (number, maxWidth) {
+    return genStr('0', (maxWidth || 2) - number.toString().length) + number
+  }
+
 }, [])

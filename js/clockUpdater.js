@@ -6,16 +6,10 @@ pull.component('clockUpdater', function () {
   var ls = s.localStorageAdapter
 
   return [
-    addZeroPadding
-  , updateMinutes
+    updateMinutes
   , recalculateMinutes
   , recalculateSeconds
   ]
-
-  /* Adds zero padding to a number */
-  function addZeroPadding (number, maxWidth) {
-    return g.genStr('0', (maxWidth || 2) - number.toString().length) + number
-  }
 
   /* Updates the minutes DOM-Element */
   function updateMinutes (newValue) {
@@ -28,17 +22,16 @@ pull.component('clockUpdater', function () {
   }
 
   /* calculates and updates minutes */
-  function recalculateMinutes (currentPeriodSeconds) {
-    updateMinutes(addZeroPadding(s.periodControl.getCurrentPeriodLength() - 1 - Math.floor(currentPeriodSeconds / 60)))
+  function recalculateMinutes (currentPeriodSeconds, currentPeriodLength) {
+    updateMinutes(g.addZeroPadding(currentPeriodLength - 1 - Math.floor(currentPeriodSeconds / 60)))
   }
 
   /* calculates and updates seconds */
   function recalculateSeconds (currentPeriodSeconds) {
-    updateSeconds(addZeroPadding(59 - currentPeriodSeconds % 60))
+    updateSeconds(g.addZeroPadding(59 - currentPeriodSeconds % 60))
   }
 }, [
 , 'generic'
 , 'domManipulation'
 , 'localStorageAdapter'
-, 'periodControl'
 ])
