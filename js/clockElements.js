@@ -37,7 +37,7 @@ pull.component('clockElements', function () {
   }
 
   function updateToggleRunButton (running) {
-    dom.setElementInnerHTML('clock__control--toggleRun', (running ? 'Stop' : 'Start'))
+    dom.setElementInnerHTML('actionButton--toggleRun', (running ? 'Stop' : 'Start'))
   }
 
   /* Creates the period and the nthPeriod label */
@@ -54,10 +54,10 @@ pull.component('clockElements', function () {
   /* Creates controls for */
   function createControls () {
     return [
-      g.setAttribute(dom.createAnElement('a', 'Start', dom.bemify('clock__control--toggleRun')), 'href', '#toggleRun'),
-      g.setAttribute(dom.createAnElement('a', 'Skip', dom.bemify('clock__control--skip')),'href', '#skip'),
-      g.setAttribute(dom.createAnElement('a', 'Reset Current Period', dom.bemify('clock__control--resetCurrentTime')), 'href', '#resetCurrentTime'),
-      g.setAttribute(dom.createAnElement('a', 'Full Reset', dom.bemify('clock__control--fullReset')), 'href', '#fullReset')
+      g.setAttribute(dom.createAnElement('a', 'Start', dom.bemify('actionButton--toggleRun')), 'href', 'javascript:void(0)'),
+      g.setAttribute(dom.createAnElement('a', 'Skip', dom.bemify('actionButton--skip')), 'href', 'javascript:void(0)'),
+      g.setAttribute(dom.createAnElement('a', 'Reset Current Period', dom.bemify('actionButton--resetCurrentTime')), 'href', 'javascript:void(0)'),
+      g.setAttribute(dom.createAnElement('a', 'Full Reset', dom.bemify('actionButton--fullReset')), 'href', 'javascript:void(0)')
     ]
   }
 }, [

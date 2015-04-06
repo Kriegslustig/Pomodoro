@@ -30,23 +30,23 @@ pull.component('main', function () {
   function initializeClock () {
     if(!ls.getCurrentRun()) ls.resetState()
     s.theClock.createAClock(document.body)
-    addHashActions()
+    addbuttonActions()
     initSyncs()
     ls.removeRunning()
   }
 
-  /* Adds all hashactions */
-  function addHashActions () {
-    s.hashActions.addAction('toggleRun', s.clockRunKiller.toggleRun)
-    s.hashActions.addAction('skip', s.periodControl.nextPeriod)
-    s.hashActions.addAction('resetCurrentTime', ls.resetPeriodStartingTime)
-    s.hashActions.addAction('fullReset', s.clockRunKiller.kickOff)
+  /* Adds all buttonActions */
+  function addbuttonActions () {
+    s.actionButton.addAction('toggleRun', s.clockRunKiller.toggleRun)
+    s.actionButton.addAction('skip', s.periodControl.nextPeriod)
+    s.actionButton.addAction('resetCurrentTime', ls.resetPeriodStartingTime)
+    s.actionButton.addAction('fullReset', s.clockRunKiller.kickOff)
   }
 
 }, [
   'generic'
 , 'localStorageAdapter'
-, 'hashActions'
+, 'actionButton'
 , 'audioAlert'
 , 'backgroundAnimation'
 , 'periodControl'

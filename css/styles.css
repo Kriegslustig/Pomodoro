@@ -29,23 +29,9 @@ body[data-currentperiod=longBreak] {
   padding-bottom: 2rem;
 }
 
-.clock__control {
-  display: block;
-  padding: .5rem;
-  text-align: center;
-}
-
 .clock__nthRun {
   text-decoration: underline;
   font-size: 3rem;
-}
-
-.clock__control {
-  color: hsl(230, 30%, 20%);
-}
-
-.clock__control:active {
-  color: hsl(0, 0%, 100%);
 }
 
 .clock__animation {
@@ -62,4 +48,18 @@ body[data-currentperiod=longBreak] {
 body[data-currentperiod=shortBreak] .clock__animation,
 body[data-currentperiod=longBreak] .clock__animation {
   background-color: hsl(80, 30%, 50%);
+}
+
+.actionButton {
+  color: hsl(230, 30%, 20%);
+}
+
+.actionButton:active {
+  color: hsl(0, 0%, 100%);
+}
+
+.actionButton {
+  display: block;
+  padding: .5rem;
+  text-align: center;
 }

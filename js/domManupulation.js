@@ -16,6 +16,7 @@ pull.component('domManipulation', function () {
   , giveClass
   , appendChild
   , appendChildrenTo
+  , onInteract
   ]
 
   /* gets a dom-node by className */
@@ -62,6 +63,14 @@ pull.component('domManipulation', function () {
     })
     return parentElement
   }
+
+  /* Adds an eventlistener that triggers when a user interacts (clicks or presses a key) with the button */
+  function onInteract (element, action) {
+    element.addEventListener('click', action)
+    element.addEventListener('keydown', action)
+    return true
+  }
+
 }, [
   'generic'
 ])
