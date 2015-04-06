@@ -6,8 +6,11 @@
   <link rel="stylesheet" type="text/css" href="css/reset.css">
   <link rel="stylesheet" type="text/css" href="css/styles.css">
 
-  <!-- Level -1 -->
+  <!-- I tried componentizing my app a bit with this pull.js object i wrote. Please don't hate me for writting my own modularization system. -->
   <script src="js/pull.js"></script>
+
+  <!-- The imports are ordered by complexity. Level -1 components don't have any dependencies, while level 0 deps have Level -1 deps as deps. -->
+  <!-- Level -1 -->
   <script src="js/generic.js"></script>
   <script src="js/config.js"></script>
 

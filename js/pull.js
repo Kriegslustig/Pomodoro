@@ -1,5 +1,11 @@
 /*
-  A super simple componentization system
+  A super simple componentization system.
+
+  A component is made by a call to pull.component. It takes a component name, an anonymous function and an array with it's dependencies as arguments.
+
+  The dependencies are then bound to `this`. If a dependency can't be resolved the creation of the component is qued. The que is checked every time a new component is created.
+
+  All exports of a component should be returned in an array.
 */
 
 var pull = (function () {
