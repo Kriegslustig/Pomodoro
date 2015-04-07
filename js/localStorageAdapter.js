@@ -10,6 +10,8 @@ pull.component('localStorageAdapter', function () {
     setPeriodStartingTime(getCurrentTimeSeconds() - newValue)
   }
 
+  var s = this
+
   return [
     syncLocalStorageTo
   , resetState
@@ -35,14 +37,14 @@ pull.component('localStorageAdapter', function () {
   /* Executes a function in an interval and passes the current value of the desired localStorageItem to it */
   function syncLocalStorageTo (key, syncFunct, interval, dontDoFisrtTime) {
     var currentValue = localStorage.getItem(key)
-    if(!dontDoFisrtTime) syncFunct(localStorage.getItem(key))
-    setInterval(function () {
+    if(!dontDoFisrtTime) syncFunct(currentValue)
+    s.intervalControler.newInterval(key + '-' + syncFunct.name, function () {
       var newValue = localStorage.getItem(key)
       if(newValue != currentValue){
         syncFunct(newValue)
         currentValue = newValue
       }
-    }, (interval || 500))
+    }, (interval || 500), true)
   }
 
   /* resets all used localStorage items */
@@ -146,4 +148,6 @@ pull.component('localStorageAdapter', function () {
     localStorage.setItem('currentPeriod', newPeriod)
     return newPeriod
   }
-}, [])
+}, [
+  'intervalControler'
+])
