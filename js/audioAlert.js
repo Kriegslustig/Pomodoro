@@ -20,8 +20,10 @@ pull.component('audioAlert', function () {
 
   /* tiggers the audio element to play */
   function audioAlert () {
-    dom.getElement('clock__alert').load()
-    dom.getElement('clock__alert').play()
+    return (
+      dom.getElement('clock__alert').play()
+      && dom.getElement('clock__alert').load()
+    )
   }
 }, [
   'config'

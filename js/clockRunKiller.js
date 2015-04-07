@@ -1,3 +1,7 @@
+/*
+  Some kind of a controler for the clockrunner
+*/
+
 pull.component('clockRunKiller', function () {
 
   var s = this

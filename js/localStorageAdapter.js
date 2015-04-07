@@ -35,10 +35,10 @@ pull.component('localStorageAdapter', function () {
   ]
 
   /* Executes a function in an interval and passes the current value of the desired localStorageItem to it */
-  function syncLocalStorageTo (key, syncFunct, interval, dontDoFisrtTime) {
+  function syncLocalStorageTo (key, syncFunct, interval, dontDoFirstTime) {
     var currentValue = localStorage.getItem(key)
-    if(!dontDoFisrtTime) syncFunct(currentValue)
-    s.intervalControler.newInterval(key + '-' + syncFunct.name, function () {
+    if(!dontDoFirstTime) syncFunct(currentValue)
+    return s.intervalControler.newInterval(key + '-' + syncFunct.name, function () {
       var newValue = localStorage.getItem(key)
       if(newValue != currentValue){
         syncFunct(newValue)
