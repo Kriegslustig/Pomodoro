@@ -14,13 +14,15 @@ pull.component('clockRunKiller', function () {
     makeMaster()
     s.periodControl.newPeriod('run')
     ls.resetState()
-    ls.setRunning()
+    ls.setRunning(true)
   }
 
   /* Makes a client the owner of the second counter  */
   function makeMaster () {
-    s.intervalControler.newInterval('secondIncrement', shouldUpdateSeconds, 1000)
-    s.intervalControler.newInterval('shouldDoNextPeriod', s.periodControl.shouldDoNextPeriod, 100)
+    return (
+      s.intervalControler.newInterval('secondIncrement', shouldUpdateSeconds, 1000)
+      && s.intervalControler.newInterval('shouldDoNextPeriod', s.periodControl.shouldDoNextPeriod, 100)
+    )
   }
 
   /* Increments seconds if the clocks running */

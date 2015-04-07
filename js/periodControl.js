@@ -38,9 +38,14 @@ pull.component('periodControl', function () {
 
   /* Returns the name of the next period */
   function getNextPeriodName () {
-    for (var ind = 0; ind < s.config.prioritization.length; ind++) {
-      if((ls.getNthPeriod() + 1) % getPeriod(s.config.prioritization[ind]).every == 0) return s.config.prioritization[ind]
-    }
+    var returnVal = false
+    s.config.prioritization.forEach(function (period, index) {
+      if((ls.getNthPeriod() + 1) % getPeriod(period).every == 0) {
+        returnVal = period
+        return false
+      }
+    })
+    return returnVal
   }
 
   /* Initializes the nextPeriod */
@@ -50,14 +55,16 @@ pull.component('periodControl', function () {
 
   /* Initiates a new run if currentRunMinutes is higher than or equal to currentPeriod */
   function shouldDoNextPeriod (currentMinutes) {
-    if(ls.getSeconds() / 60 >= getCurrentPeriodLength())
-      if(nextPeriod() == 'run')
-        s.audioAlert.audioAlert()
+    if(ls.getSeconds() / 60 >= getCurrentPeriodLength()) {
+      if(nextPeriod() == 'run') s.audioAlert.audioAlert()
+      return true
+    }
+    return false
   }
 
   /* initiates a new run */
   function newRun () {
-    ls.setCurrentRun(ls.getCurrentRun() + 1)
+    return ls.setCurrentRun(ls.getCurrentRun() + 1)
   }
 
   /* Initiates a period */
