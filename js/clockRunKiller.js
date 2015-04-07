@@ -25,7 +25,7 @@ pull.component('clockRunKiller', function () {
 
   /* Increments seconds if the clocks running */
   function shouldUpdateSeconds () {
-    if(ls.isRunning) return ls.updateSeconds()
+    if(ls.isRunning()) return ls.updateSeconds()
   }
 
   /* Toggles the clock runner */
