@@ -32,7 +32,6 @@ pull.component('main', function () {
     s.theClock.createAClock(document.body)
     addbuttonActions()
     initSyncs()
-    ls.removeRunning()
   }
 
   /* Adds all buttonActions */

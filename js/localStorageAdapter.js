@@ -13,7 +13,6 @@ pull.component('localStorageAdapter', function () {
   return [
     syncLocalStorageTo
   , resetState
-  , removeRunning
   , setRunning
   , isRunning
   , getCurrentRun
@@ -24,6 +23,7 @@ pull.component('localStorageAdapter', function () {
   , setPeriodStartingTime
   , getPeriodStartingTime
   , resetPeriodStartingTime
+  , recalculateStartingTime
   , getMinutes
   , getNthPeriod
   , setNthPeriod
@@ -55,14 +55,9 @@ pull.component('localStorageAdapter', function () {
     resetPeriodStartingTime()
   }
 
-  /* Removes running */
-  function removeRunning () {
-    localStorage.removeItem('running')
-  }
-
   /* Sets running */
-  function setRunning () {
-    localStorage.setItem('running', true)
+  function setRunning (newState) {
+    return newState ? localStorage.setItem('running', true) : localStorage.removeItem('running')
   }
 
   /* Sets running */
@@ -103,6 +98,11 @@ pull.component('localStorageAdapter', function () {
   /* Resets the periodStarting time to the current time */
   function resetPeriodStartingTime () {
     return localStorage.setItem('periodStartingTime', getCurrentTimeSeconds())
+  }
+
+  /* Calculates a new period starting time */
+  function recalculateStartingTime () {
+    return localStorage.setItem('periodStartingTime', getCurrentTimeSeconds() - getSeconds())
   }
 
   /* Returns the current time in Seconds */

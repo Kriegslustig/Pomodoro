@@ -30,8 +30,11 @@ pull.component('clockRunKiller', function () {
 
   /* Toggles the clock runner */
   function toggleRun () {
+    var newState = !ls.isRunning()
     makeMaster()
-    return ls.isRunning() ? ls.removeRunning() : ls.setRunning()
+    ls.setRunning(newState)
+    if(newState) ls.recalculateStartingTime()
+    return newState
   }
 
 }, [
