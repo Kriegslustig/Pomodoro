@@ -57,7 +57,7 @@ pull.component('periodControl', function () {
   /* Initiates a new run if currentRunMinutes is higher than or equal to currentPeriod */
   function shouldDoNextPeriod (currentMinutes) {
     if(ls.getSeconds() / 60 >= getCurrentPeriodLength()) 
-      return s.audioAlert.audioAlert()
+      return s.audioAlert.audioAlert() && nextPeriod()
     return false
   }
 
