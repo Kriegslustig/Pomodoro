@@ -9,6 +9,7 @@ pull.component('intervalControler', function () {
   return [
     newInterval
   , killInterval
+  , has
   ]
 
   /* clear the old one running under that id and */

@@ -36,8 +36,8 @@ pull.component('clockElements', function () {
     dom.setElementInnerHTML('clock__nthRun', nthRun)
   }
 
-  function updateToggleRunButton (running) {
-    dom.setElementInnerHTML('actionButton--toggleRun', (running ? 'Stop' : 'Start'))
+  function updateToggleRunButton (master, running) {
+    dom.setElementInnerHTML('actionButton--toggleRun', ((running && master) ? 'Stop' : 'Start'))
   }
 
   /* Creates the period and the nthPeriod label */

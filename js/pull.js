@@ -8,7 +8,7 @@
   All exports of a component should be returned in an array.
 */
 
-var pullDebug = false
+var pullDebug = true
 
 var pull = (function () {
   var app = {}
@@ -81,6 +81,7 @@ var pull = (function () {
   /* Attaches stuff to the window */
   function addToWindow (someDict) {
     return _.reduce(someDict, function (lastVal, someValue, key) {
+      console.log(!window[key])
       return (
         !window[key]
         && (window[key] = someValue)

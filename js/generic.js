@@ -10,6 +10,7 @@ pull.component('generic', function () {
   , genArr
   , genStr
   , addZeroPadding
+  , getValue
   , callWith
   , checkIfUndefined
   ]
@@ -27,7 +28,7 @@ pull.component('generic', function () {
 
   /* Returns the nth position in an array */
   function nth (array, position) {
-    return array[position] ? array[position] : 'undefined'
+    return array[position] ? array[position] : undefined
   }
 
   /* Executes a function if it exsists */
@@ -54,18 +55,26 @@ pull.component('generic', function () {
     return genStr('0', (maxWidth || 2) - number.toString().length) + number
   }
 
-  // Returns a function that calls a given function with the defined parameters
+  /* gets a value from a function or a value */
+  function getValue (value) {
+    return typeof value == 'function' ? value() : value
+  }
+
+  /* splits a string and returns the passed value if it doesn't find it */
+  function splitIfHas (searchIn, splitHere, position) {
+    return (typeof searchIn == 'string' && _.includes(searchIn, splitHere)) ? searchIn.split(splitHere)[position] : false
+  }
+
+  /* Returns a function that calls a given function with the defined parameters */
   function callWith (func /* args */) {
     var args = _.rest(arguments)
     return function (/* passedArgs */) {
       var passedArgs = arguments
       func.apply(null,
-        args.map(function (value) {
-          if(typeof value == 'string'
-            && value[0] == '$') {
-            var newArg = passedArgs[parseInt(value.substring(1))]
-            if(newArg || typeof newArg == 'string') return newArg
-          }
+        _.map(args, function (value) {
+          value = getValue(value)
+          var replaceWith = splitIfHas(value, '$', 1)
+          if(typeof replaceWith == 'string') value = passedArgs[replaceWith]
           return value
         })
       )

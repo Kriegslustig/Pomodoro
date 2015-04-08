@@ -11,6 +11,8 @@ pull.component('clockRunKiller', function () {
   return [
     kickOff
   , toggleRun
+  , isMaster
+  , makeMaster
   ]
 
   /* Initializes a new counter */
@@ -19,6 +21,14 @@ pull.component('clockRunKiller', function () {
     s.periodControl.newPeriod('run')
     ls.resetState()
     ls.setRunning(true)
+  }
+
+  /* Checks if a client is master */
+  function isMaster () {
+    return (
+      s.intervalControler.has('secondIncrement')
+      && s.intervalControler.has('shouldDoNextPeriod')
+    )
   }
 
   /* Makes a client the owner of the second counter  */
