@@ -16,6 +16,11 @@ pull.component('periodControl', function () {
   , newPeriod
   ]
 
+  /* Returns the name of the default period */
+  function getDefaultPeriodName () {
+    return _.last(s.config.prioritization)
+  }
+
   /* Returns all attributes of a period */
   function getPeriod (periodName) {
     return s.config[periodName]
@@ -23,7 +28,7 @@ pull.component('periodControl', function () {
 
   /* Returns all attributes of the current period */
   function getCurrentPeriod () {
-    return getPeriod(ls.getCurrentPeriodName())
+    return getPeriod(ls.getCurrentPeriodName() || getDefaultPeriodName())
   }
 
   /* Returns the current periods lenth */
@@ -39,13 +44,9 @@ pull.component('periodControl', function () {
   /* Returns the name of the next period */
   function getNextPeriodName () {
     var returnVal = false
-    s.config.prioritization.forEach(function (period, index) {
-      if((ls.getNthPeriod() + 1) % getPeriod(period).every == 0) {
-        returnVal = period
-        return false
-      }
+    return _.reduceRight(s.config.prioritization, function (returnVal, period) {
+      return ((ls.getNthPeriod() + 1) % getPeriod(period).every == 0) ? period : returnVal
     })
-    return returnVal
   }
 
   /* Initializes the nextPeriod */

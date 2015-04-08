@@ -11,6 +11,7 @@ pull.component('generic', function () {
   , genStr
   , addZeroPadding
   , callWith
+  , checkIfUndefined
   ]
 
   /* checks if a string or an array has some content */
@@ -69,6 +70,11 @@ pull.component('generic', function () {
         })
       )
     }
+  }
+
+  /* checks if a variable is undefined */
+  function checkIfUndefined (value) {
+    return (value !== 'undefined' && value)
   }
 
 }, [])

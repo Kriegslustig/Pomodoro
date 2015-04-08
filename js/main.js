@@ -28,7 +28,7 @@ pull.component('main', function () {
 
   /* Creates a clock and starts listening for changes in localStorage */
   function initializeClock () {
-    if(!ls.getCurrentRun()) ls.resetState()
+    if(!ls.getCurrentPeriodName()) ls.resetState()
     s.theClock.createAClock(document.body)
     addbuttonActions()
     initSyncs()

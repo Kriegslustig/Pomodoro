@@ -11,6 +11,7 @@ pull.component('localStorageAdapter', function () {
   }
 
   var s = this
+  var g = s.generic
 
   return [
     syncLocalStorageTo
@@ -64,12 +65,12 @@ pull.component('localStorageAdapter', function () {
 
   /* Sets running */
   function isRunning () {
-    return !!localStorage.getItem('running')
+    return !!g.checkIfUndefined(localStorage.getItem('running'))
   }
 
   /* Return the currentRun */
   function getCurrentRun () {
-    return parseInt(localStorage.getItem('currentRun'))
+    return parseInt(g.checkIfUndefined(localStorage.getItem('currentRun')))
   }
 
   /* sets the currentRun */
@@ -94,7 +95,7 @@ pull.component('localStorageAdapter', function () {
 
   /* Returns the PeriodStartingTime */
   function getPeriodStartingTime () {
-    return localStorage.getItem('periodStartingTime')
+    return g.checkIfUndefined(localStorage.getItem('periodStartingTime'))
   }
 
   /* Resets the periodStarting time to the current time */
@@ -114,7 +115,7 @@ pull.component('localStorageAdapter', function () {
 
   /* gets LocalStorage currentPeriodSeconds */
   function getSeconds (newValue) {
-    return parseInt(localStorage.getItem('currentPeriodSeconds'))
+    return parseInt(g.checkIfUndefined(localStorage.getItem('currentPeriodSeconds')))
   }
 
   /* Calculates currentRunMinutes */
@@ -124,7 +125,7 @@ pull.component('localStorageAdapter', function () {
 
   /* gets nth period from localstorage */
   function getNthPeriod () {
-    return parseInt(localStorage.getItem('nthPeriod'))
+    return parseInt(g.checkIfUndefined(localStorage.getItem('nthPeriod')))
   }
 
   /* Sets the nthPeriod */
@@ -140,7 +141,7 @@ pull.component('localStorageAdapter', function () {
 
   /* Returns the current Period */
   function getCurrentPeriodName () {
-    return localStorage.getItem('currentPeriod')
+    return g.checkIfUndefined(localStorage.getItem('currentPeriod'))
   }
 
   /* Sets the current period to passed value and returns it */
@@ -149,5 +150,6 @@ pull.component('localStorageAdapter', function () {
     return newPeriod
   }
 }, [
-  'intervalControler'
+  'generic'
+, 'intervalControler'
 ])
