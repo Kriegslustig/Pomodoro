@@ -8,6 +8,8 @@
   All exports of a component should be returned in an array.
 */
 
+var pullDebug = false
+
 var pull = (function () {
   var app = {}
   var que = []
@@ -18,6 +20,7 @@ var pull = (function () {
     createFunctionsArray.call(getBindable(deps)).forEach(function (value) {
       if(typeof value == 'function') asAnObject[value.name] = value
     })
+    if(pullDebug) addToWindow(asAnObject)
     app[componentName] = asAnObject
     checkQue()
     return app[componentName]
@@ -72,6 +75,18 @@ var pull = (function () {
         createComponent(component.componentName, component.functions, component.deps)
         console.log('pull.js - RESOLVED: ' + component.componentName)
       }
+    })
+  }
+
+  /* Attaches stuff to the window */
+  function addToWindow (someDict) {
+    return _.reduce(someDict, function (lastVal, someValue, key) {
+      return (
+        !window[key]
+        && (window[key] = someValue)
+        && lastVal
+        && key
+      )
     })
   }
 
