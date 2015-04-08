@@ -58,7 +58,7 @@ pull.component('domManipulation', function () {
 
   /* Appends one or more Strings or DOMNodes to a parentElement */
   function appendChildrenTo (parentElement, children) {
-    _.each(children, g.callWith(appendChild, parentElement, '$0'))
+    _.each([].concat(children), g.callWith(appendChild, parentElement, '$0'))
     return parentElement
   }
 
