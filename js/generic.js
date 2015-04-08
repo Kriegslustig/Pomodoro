@@ -10,6 +10,7 @@ pull.component('generic', function () {
   , genArr
   , genStr
   , addZeroPadding
+  , callWith
   ]
 
   /* checks if a string or an array has some content */
@@ -50,6 +51,24 @@ pull.component('generic', function () {
   /* Adds zero padding to a number */
   function addZeroPadding (number, maxWidth) {
     return genStr('0', (maxWidth || 2) - number.toString().length) + number
+  }
+
+  // Returns a function that calls a given function with the defined parameters
+  function callWith (func /* args */) {
+    var args = _.rest(arguments)
+    return function (/* passedArgs */) {
+      var passedArgs = arguments
+      func.apply(null,
+        args.map(function (value) {
+          if(typeof value == 'string') console.log(passedArgs)
+          return (
+            typeof value == 'string'
+            && value[0] == '$'
+            && passedArgs[parseInt(value.substring(1))]
+          ) || value
+        })
+      )
+    }
   }
 
 }, [])
