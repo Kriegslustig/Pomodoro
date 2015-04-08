@@ -60,12 +60,12 @@ pull.component('generic', function () {
       var passedArgs = arguments
       func.apply(null,
         args.map(function (value) {
-          if(typeof value == 'string') console.log(passedArgs)
-          return (
-            typeof value == 'string'
-            && value[0] == '$'
-            && passedArgs[parseInt(value.substring(1))]
-          ) || value
+          if(typeof value == 'string'
+            && value[0] == '$') {
+            var newArg = passedArgs[parseInt(value.substring(1))]
+            if(newArg || typeof newArg == 'string') return newArg
+          }
+          return value
         })
       )
     }
